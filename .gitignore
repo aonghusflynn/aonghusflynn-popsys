@@ -1,0 +1,16 @@
+# Local dev
+.superpowers/
+.claude/settings.local.json
+
+# WordPress
+wp-content/uploads/
+wp-content/plugins/
+wp-content/themes/twenty*/
+
+# Dependencies
+node_modules/
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db
