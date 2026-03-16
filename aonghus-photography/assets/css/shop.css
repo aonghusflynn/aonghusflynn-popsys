@@ -111,8 +111,8 @@
 /* ---- Forms (cart, checkout, account) ---- */
 .woocommerce form .form-row input.input-text,
 .woocommerce form .form-row textarea {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: var(--colour-surface);
+  border: 1px solid var(--colour-border);
   color: var(--colour-text);
   padding: 10px 14px;
   width: 100%;
@@ -155,7 +155,7 @@
 .woocommerce-message,
 .woocommerce-error,
 .woocommerce-info {
-  background: #1a1a1a;
+  background: var(--colour-surface);
   border-top: 3px solid var(--colour-text);
   color: var(--colour-text);
   padding: 16px 20px;
@@ -165,5 +165,5 @@
 }
 
 .woocommerce-error {
-  border-top-color: #c0392b;
+  border-top-color: var(--colour-error);
 }

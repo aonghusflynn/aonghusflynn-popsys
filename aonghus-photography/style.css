@@ -14,6 +14,9 @@ Text Domain:  aonghus-photography
   --colour-text:    #f0f0f0;
   --colour-muted:   #888888;
   --colour-accent:  #ffffff;
+  --colour-surface: #1a1a1a;
+  --colour-border:  #333333;
+  --colour-error:   #c0392b;
   --font-stack:     -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --nav-height:     56px;
   --transition:     0.3s ease;
