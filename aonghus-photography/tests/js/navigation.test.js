@@ -9,9 +9,7 @@ describe('initNavigation', () => {
 
   beforeEach(() => {
     document.body.innerHTML = `
-      <body>
-        <button class="nav-toggle" aria-expanded="false" aria-label="Open menu"></button>
-      </body>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Open menu"></button>
     `;
     body   = document.body;
     button = document.querySelector('.nav-toggle');

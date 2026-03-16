@@ -5,7 +5,7 @@
   <div class="site-footer__inner">
     <p class="site-footer__copy">
       &copy; <?php echo esc_html( date( 'Y' ) ); ?>
-      <?php bloginfo( 'name' ); ?>
+      <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
     </p>
   </div>
 </footer>

@@ -183,7 +183,7 @@ body:not(.home) .site-header {
 
   .nav-open .site-nav {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: auto;
   }
 
   .site-nav__list {

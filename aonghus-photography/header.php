@@ -18,10 +18,10 @@
   <div class="site-header__inner">
 
     <a class="site-header__name" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-      <?php bloginfo( 'name' ); ?>
+      <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
     </a>
 
-    <nav class="site-nav" aria-label="<?php esc_attr_e( 'Primary navigation', 'aonghus-photography' ); ?>">
+    <nav id="site-nav" class="site-nav" aria-label="<?php esc_attr_e( 'Primary navigation', 'aonghus-photography' ); ?>">
       <?php
       wp_nav_menu( [
         'theme_location' => 'primary',
