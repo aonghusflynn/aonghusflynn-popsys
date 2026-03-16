@@ -76,7 +76,7 @@ Registered in `inc/post-types.php`.
 ## Theme File Structure
 
 ```
-your-theme/
+aonghus-photography/
 ├── style.css                        # Theme header + base styles
 ├── functions.php                    # Theme setup, CPT registration, script enqueue
 ├── index.php                        # Fallback template
@@ -84,28 +84,33 @@ your-theme/
 ├── single-photo_project.php         # Individual project page
 ├── archive-photo_project.php        # Redirects to homepage (not used directly)
 ├── page.php                         # Generic pages (About, Contact)
-├── header.php                       # Global nav
+├── header.php                       # Global nav (desktop + mobile)
 ├── footer.php                       # Minimal footer
 ├── woocommerce/
-│   └── archive-product.php          # Shop page template override
+│   ├── archive-product.php          # Shop archive template override
+│   └── single-product.php           # Single product template override (dark styling)
+│   # cart.php and checkout.php use WooCommerce defaults; shop.css handles dark overrides
 ├── assets/
 │   ├── css/
 │   │   ├── main.css                 # Global styles, CSS custom properties
 │   │   ├── slideshow.css            # Homepage full-screen slideshow
 │   │   ├── project.css              # Project grid + lightbox styles
-│   │   └── shop.css                 # WooCommerce dark theme overrides
+│   │   └── shop.css                 # WooCommerce dark theme overrides (all shop pages)
 │   └── js/
-│       ├── slideshow.js             # Scroll/swipe behaviour for homepage
+│       ├── slideshow.js             # Scroll/swipe + dot indicator for homepage
+│       ├── navigation.js            # Mobile hamburger + full-screen overlay toggle
 │       └── lightbox.js              # GLightbox initialisation
 └── inc/
     ├── post-types.php               # photo_project CPT registration
-    ├── acf-fields.php               # ACF field group definitions (PHP registration)
+    ├── acf-fields.php               # ACF field group via acf_add_local_field_group()
     └── woocommerce.php              # WooCommerce hooks and setup
 ```
 
 ---
 
 ## Homepage Template (`front-page.php`)
+
+**Empty state:** If no `photo_project` posts are published, the homepage displays a centred placeholder message: "No projects yet — add your first project in wp-admin."
 
 **Behaviour:**
 - Queries all published `photo_project` posts ordered by menu order
@@ -145,7 +150,7 @@ your-theme/
 - Transparent background over homepage slideshow, solid `#0d0d0d` on all inner pages
 - Left: photographer name / logo (links to homepage)
 - Right: Projects · Shop · About · Contact
-- Mobile: hamburger menu collapsing to full-screen overlay
+- Mobile: hamburger button toggles a full-screen overlay menu; handled by `navigation.js`
 
 ---
 
@@ -169,7 +174,7 @@ your-theme/
 - WooCommerce installed as a plugin, runs standard shop functionality
 - `woocommerce/` directory in theme overrides shop templates for dark styling
 - `assets/css/shop.css` overrides WooCommerce default styles to match dark aesthetic
-- `inc/woocommerce.php` declares WooCommerce support and removes default WooCommerce styles (`add_theme_support('woocommerce')`, `add_filter('woocommerce_enqueue_styles', '__return_empty_array')`)
+- `inc/woocommerce.php` declares WooCommerce support and removes default WooCommerce styles (`add_theme_support('woocommerce')`, `add_filter('woocommerce_enqueue_styles', '__return_empty_array')`); cart and checkout pages are not overridden with custom templates — dark styling is applied via `shop.css` CSS rules targeting WooCommerce default markup
 - Shop is completely independent of photo projects — no cross-linking
 
 ---
@@ -193,10 +198,10 @@ your-theme/
 
 1. Download and install **LocalWP** (https://localwp.com/)
 2. Create a new site (e.g. `photography.local`)
-3. Clone / copy theme into `wp-content/themes/your-theme/`
+3. Clone / copy theme into `wp-content/themes/aonghus-photography/`
 4. Activate theme in wp-admin → Appearance → Themes
 5. Install plugins: **Advanced Custom Fields** (free), **WooCommerce**
-6. Import ACF field group via `inc/acf-fields.php` (auto-registers on theme activation)
+6. ACF field group auto-registers on theme activation via `acf_add_local_field_group()` in `inc/acf-fields.php` — no import step required
 
 ---
 
