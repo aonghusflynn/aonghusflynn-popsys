@@ -1,0 +1,115 @@
+/* ============================================================
+   HOMEPAGE SLIDESHOW — full-viewport scroll-snap
+============================================================ */
+
+/* Remove default site-content padding for homepage */
+.home .site-content {
+  padding-top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slideshow {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar visually */
+.slideshow::-webkit-scrollbar { display: none; }
+.slideshow { scrollbar-width: none; }
+
+.slideshow__slide {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.slideshow__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slideshow__cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark gradient overlay for text legibility */
+.slideshow__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  pointer-events: none;
+}
+
+.slideshow__meta {
+  position: absolute;
+  bottom: 40px;
+  left: 32px;
+  z-index: 2;
+}
+
+.slideshow__title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-accent);
+}
+
+/* Empty state */
+.slideshow--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.slideshow__empty-msg {
+  color: var(--colour-muted);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* Dot navigation — fixed right edge */
+.slideshow__dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 50;
+}
+
+.slideshow__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.slideshow__dot--active {
+  background: var(--colour-accent);
+  transform: scale(1.4);
+}
