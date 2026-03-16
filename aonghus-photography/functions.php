@@ -48,9 +48,9 @@ function aonghus_photography_scripts() {
     // Single project pages only
     if ( is_singular( 'photo_project' ) ) {
         wp_enqueue_style( 'aonghus-project', get_template_directory_uri() . '/assets/css/project.css', [ 'aonghus-main' ], $v );
-        wp_enqueue_script( 'aonghus-lightbox', get_template_directory_uri() . '/assets/js/lightbox.js', [], $v, true );
 
-        // GLightbox CDN
+        // GLightbox CDN — registered first so aonghus-lightbox can declare it as a dependency.
+        // Pre-pulled from Task 8; no further GLightbox changes needed in that task.
         wp_enqueue_style(
             'glightbox',
             'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css',
@@ -64,6 +64,8 @@ function aonghus_photography_scripts() {
             '3.3.0',
             true
         );
+
+        wp_enqueue_script( 'aonghus-lightbox', get_template_directory_uri() . '/assets/js/lightbox.js', [ 'glightbox' ], $v, true );
     }
 
     // WooCommerce pages only
