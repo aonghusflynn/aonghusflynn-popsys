@@ -53,13 +53,13 @@ function aonghus_photography_scripts() {
         // Pre-pulled from Task 8; no further GLightbox changes needed in that task.
         wp_enqueue_style(
             'glightbox',
-            'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css',
+            'https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css',
             [],
             '3.3.0'
         );
         wp_enqueue_script(
             'glightbox',
-            'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js',
+            'https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js',
             [],
             '3.3.0',
             true
