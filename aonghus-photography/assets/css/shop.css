@@ -1,0 +1,169 @@
+/* ============================================================
+   SHOP — WooCommerce dark theme overrides
+   Applies to: archive-product, single-product, cart, checkout,
+   account pages. No WC default stylesheets are loaded.
+============================================================ */
+
+/* ---- Shared WooCommerce page wrapper ---- */
+.woocommerce,
+.woocommerce-page {
+  padding: 80px 24px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---- Page title ---- */
+.woocommerce h1.page-title,
+.woocommerce-page h1.page-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text);
+  margin-bottom: 48px;
+}
+
+/* ---- Product grid ---- */
+.woocommerce ul.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .woocommerce ul.products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.woocommerce ul.products li.product a img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.woocommerce ul.products li.product a:hover img {
+  transform: scale(1.03);
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text);
+  margin-top: 12px;
+}
+
+.woocommerce ul.products li.product .price {
+  color: var(--colour-muted);
+  font-size: 13px;
+}
+
+/* ---- Buttons ---- */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+  background: var(--colour-text);
+  color: var(--colour-bg);
+  border: none;
+  padding: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity var(--transition);
+  border-radius: 0;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover {
+  background: var(--colour-text);
+  opacity: 0.8;
+}
+
+/* ---- Single product ---- */
+.woocommerce div.product div.images img {
+  width: 100%;
+  display: block;
+}
+
+.woocommerce div.product .product_title {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text);
+  margin-bottom: 12px;
+}
+
+.woocommerce div.product .price {
+  color: var(--colour-muted);
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+/* ---- Forms (cart, checkout, account) ---- */
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: var(--colour-text);
+  padding: 10px 14px;
+  width: 100%;
+  font-family: var(--font-stack);
+  font-size: 14px;
+}
+
+.woocommerce form .form-row label {
+  color: var(--colour-muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ---- Cart table ---- */
+.woocommerce table.shop_table {
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--colour-text);
+}
+
+.woocommerce table.shop_table th,
+.woocommerce table.shop_table td {
+  padding: 16px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px;
+  text-align: left;
+}
+
+.woocommerce table.shop_table th {
+  color: var(--colour-muted);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---- Notices ---- */
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+  background: #1a1a1a;
+  border-top: 3px solid var(--colour-text);
+  color: var(--colour-text);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  list-style: none;
+}
+
+.woocommerce-error {
+  border-top-color: #c0392b;
+}
