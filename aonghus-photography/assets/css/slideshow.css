@@ -14,11 +14,11 @@
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
 }
 
-/* Hide scrollbar visually */
+/* Hide scrollbar visually (WebKit) */
 .slideshow::-webkit-scrollbar { display: none; }
-.slideshow { scrollbar-width: none; }
 
 .slideshow__slide {
   position: relative;
