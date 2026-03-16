@@ -1,5 +1,13 @@
 <?php
 /**
+ * Custom Post Types
+ *
+ * Registers the photo_project custom post type for the Aonghus Photography theme.
+ *
+ * @package Aonghus_Photography
+ */
+
+/**
  * Registers the photo_project custom post type.
  */
 function aonghus_register_photo_project_cpt() {
@@ -16,13 +24,15 @@ function aonghus_register_photo_project_cpt() {
     ];
 
     $args = [
-        'labels'              => $labels,
-        'public'              => true,
-        'has_archive'         => false,
-        'rewrite'             => [ 'slug' => 'projects' ],
-        'supports'            => [ 'title', 'editor', 'thumbnail', 'page-attributes' ],
-        'menu_icon'           => 'dashicons-camera',
-        'show_in_rest'        => false,
+        'labels'       => $labels,
+        'public'       => true,
+        // Archive disabled; homepage serves as the project listing via front-page.php.
+        'has_archive'  => false,
+        'rewrite'      => [ 'slug' => 'projects' ],
+        'supports'     => [ 'title', 'editor', 'thumbnail', 'page-attributes' ],
+        'menu_icon'    => 'dashicons-camera',
+        // REST disabled intentionally; REST API / Gutenberg block theme are out of scope.
+        'show_in_rest' => false,
     ];
 
     register_post_type( 'photo_project', $args );
