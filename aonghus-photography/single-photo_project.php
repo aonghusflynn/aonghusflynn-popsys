@@ -8,9 +8,25 @@ get_header();
 while ( have_posts() ) :
     the_post();
 
-    // get_field() requires ACF plugin; fall back to empty array if not active.
-    $gallery = function_exists( 'get_field' ) ? get_field( 'project_gallery' ) : [];
-    $count   = is_array( $gallery ) ? count( $gallery ) : 0;
+    // Retrieve gallery from native post meta (stored as JSON array of attachment IDs).
+    $stored      = get_post_meta( get_the_ID(), '_project_gallery', true );
+    $gallery_ids = json_decode( $stored ?: '[]', true );
+    $gallery_ids = is_array( $gallery_ids ) ? array_map( 'absint', $gallery_ids ) : [];
+
+    // Build $gallery array in the same structure expected by the template below.
+    $gallery = [];
+    foreach ( $gallery_ids as $attachment_id ) {
+        $full  = wp_get_attachment_image_src( $attachment_id, 'full' );
+        $large = wp_get_attachment_image_src( $attachment_id, 'large' );
+        $alt   = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+        if ( ! $full ) continue;
+        $gallery[] = [
+            'url'   => $full[0],
+            'sizes' => [ 'large' => $large ? $large[0] : $full[0] ],
+            'alt'   => $alt,
+        ];
+    }
+    $count = count( $gallery );
 ?>
 
 <article class="project" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
