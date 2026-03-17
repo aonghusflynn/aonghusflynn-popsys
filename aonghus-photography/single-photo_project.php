@@ -8,7 +8,8 @@ get_header();
 while ( have_posts() ) :
     the_post();
 
-    $gallery = get_field( 'project_gallery' );
+    // get_field() requires ACF plugin; fall back to empty array if not active.
+    $gallery = function_exists( 'get_field' ) ? get_field( 'project_gallery' ) : [];
     $count   = is_array( $gallery ) ? count( $gallery ) : 0;
 ?>
 
